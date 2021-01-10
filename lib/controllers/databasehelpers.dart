@@ -31,7 +31,7 @@ class DataBaseHelper {
     final value = prefs.get(key) ?? 0;
 
     // String myUrl = "$serverUrl/api";
-    String myUrl = "http://192.168.1.2:3000/products";
+    String myUrl = "http://192.168.1.56:3000/products";
     final response = await http.post(myUrl, headers: {
       'Accept': 'application/json'
     }, body: {
@@ -51,7 +51,38 @@ class DataBaseHelper {
     }
   }
 
-//function save
+  //function for update or put
+  void editarProduct(
+      String _id, String name, String price, String stock) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'token';
+    final value = prefs.get(key) ?? 0;
+
+    String myUrl = "http://192.168.1.56:3000/product/$_id";
+    http.put(myUrl, body: {
+      "name": "$name",
+      "price": "$price",
+      "stock": "$stock"
+    }).then((response) {
+      print('Response status : ${response.statusCode}');
+      print('Response body : ${response.body}');
+    });
+  }
+
+  //function for delete
+  Future<void> removeRegister(String _id) async {
+    String myUrl = "http://192.168.1.56:3000/product/$_id";
+
+    http.Response res = await http.delete("$myUrl");
+
+    if (res.statusCode == 200) {
+      print("DELETED");
+    } else {
+      throw "Can't delete post.";
+    }
+  }
+
+  //function save
   _save(String token) async {
     final prefs = await SharedPreferences.getInstance();
     final key = 'token';
