@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/view/loginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() => runApp(MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: "Swift Book Seller",
       debugShowCheckedModeBanner: false,
       home: MainPage(),
-      theme: ThemeData(accentColor: Colors.white70),
+      theme: ThemeData(accentColor: Colors.green[200]),
     );
   }
 }
@@ -22,6 +23,13 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   SharedPreferences sharedPreferences;
+
+  @override
+  void initState() {
+    super.initState();
+    checkLoginStatus();
+  }
+
   checkLoginStatus() async {
     sharedPreferences = await SharedPreferences.getInstance();
     if (sharedPreferences.getString("token") == null) {
@@ -35,7 +43,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Nodejs-Mongodb", style: TextStyle(color: Colors.white)),
+        title: Text("Swift Book Seller", style: TextStyle(color: Colors.black)),
         actions: <Widget>[
           FlatButton(
             onPressed: () {
@@ -46,7 +54,7 @@ class _MainPageState extends State<MainPage> {
                       builder: (BuildContext context) => LoginPage()),
                   (Route<dynamic> route) => false);
             },
-            child: Text("Log Out", style: TextStyle(color: Colors.white)),
+            child: Text("Log Out", style: TextStyle(color: Colors.black)),
           ),
         ],
       ),
@@ -55,8 +63,8 @@ class _MainPageState extends State<MainPage> {
         child: new ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
-              accountName: new Text('Ejercicios'),
-              accountEmail: new Text('codigoalphacol@gmail.com'),
+              accountName: new Text('HanzValz'),
+              accountEmail: new Text('valmoria@gmail.com'),
             ),
             new ListTile(
                 title: new Text("List Products"),
