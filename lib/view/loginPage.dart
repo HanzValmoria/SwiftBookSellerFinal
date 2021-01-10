@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.blue, Colors.teal],
+              colors: [Colors.lightGreen, Colors.black12],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
@@ -117,9 +117,9 @@ class _LoginPageState extends State<LoginPage> {
             controller: passwordController,
             cursorColor: Colors.white,
             obscureText: true,
-            style: TextStyle(color: Colors.white70),
+            style: TextStyle(color: Colors.black26),
             decoration: InputDecoration(
-              icon: Icon(Icons.lock, color: Colors.white70),
+              icon: Icon(Icons.lock, color: Colors.black87),
               hintText: "Password",
               border: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white70)),
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
       child: Text("Swift Book Seller",
           style: TextStyle(
-              color: Colors.white70,
+              color: Colors.black87,
               fontSize: 40.0,
               fontWeight: FontWeight.bold)),
     );
