@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 class DataBaseHelper {
   var status;
   var token;
-  String serverUrlproducts = "http://192.168.1.55:3000/products";
+  String serverUrlproducts = "http://192.168.1.2:3000/products";
 
   //funciton getData
   Future<List> getData() async {
@@ -31,7 +31,7 @@ class DataBaseHelper {
     final value = prefs.get(key) ?? 0;
 
     // String myUrl = "$serverUrl/api";
-    String myUrl = "http://192.168.1.56:3000/products";
+    String myUrl = "http://192.168.1.2:3000/products";
     final response = await http.post(myUrl, headers: {
       'Accept': 'application/json'
     }, body: {
@@ -71,7 +71,7 @@ class DataBaseHelper {
 
   //function for delete
   Future<void> removeRegister(String _id) async {
-    String myUrl = "http://192.168.1.56:3000/product/$_id";
+    String myUrl = "http://192.168.1.2:3000/product/$_id";
 
     http.Response res = await http.delete("$myUrl");
 

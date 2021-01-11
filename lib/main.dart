@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/view/addProducts.dart';
 import 'package:flutter_application_project/view/listProducts.dart';
 import 'package:flutter_application_project/view/loginPage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -75,9 +76,12 @@ class _MainPageState extends State<MainPage> {
               )),
             ),
             new ListTile(
-                title: new Text("Add Products"),
-                trailing: new Icon(Icons.help),
-                onTap: () {}),
+              title: new Text("Add Products"),
+              trailing: new Icon(Icons.help),
+              onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                builder: (BuildContext context) => AddDataProduct(),
+              )),
+            ),
             new Divider(),
             new ListTile(
               title: new Text("Register user"),
