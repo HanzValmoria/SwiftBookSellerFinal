@@ -58,7 +58,7 @@ class DataBaseHelper {
     final key = 'token';
     final value = prefs.get(key) ?? 0;
 
-    String myUrl = "http://192.168.1.56:3000/product/$_id";
+    String myUrl = "http://192.168.1.2:3000/product/$_id";
     http.put(myUrl, body: {
       "name": "$name",
       "price": "$price",

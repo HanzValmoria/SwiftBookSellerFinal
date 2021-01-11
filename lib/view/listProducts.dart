@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_project/view/detailProduct.dart';
 import 'package:http/http.dart' as http;
 
 class ListProducts extends StatefulWidget {
@@ -58,6 +59,13 @@ class ItemList extends StatelessWidget {
         return new Container(
           padding: const EdgeInsets.all(10.0),
           child: new GestureDetector(
+            onTap: () => Navigator.of(context).push(
+              new MaterialPageRoute(
+                  builder: (BuildContext context) => new Detail(
+                        list: list,
+                        index: i,
+                      )),
+            ),
             child: new Card(
               child: new ListTile(
                 title: new Text(
