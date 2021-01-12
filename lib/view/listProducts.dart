@@ -14,7 +14,7 @@ class _ListProductsState extends State<ListProducts> {
   List data;
 
   Future<List> getData() async {
-    final response = await http.get("http://192.168.1.2:3000/products");
+    final response = await http.get("http://192.168.1.2:8000/api/products");
     return json.decode(response.body);
   }
 
@@ -28,7 +28,7 @@ class _ListProductsState extends State<ListProducts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text("Listviews Products"),
+        title: new Text("List of Products"),
       ),
       body: new FutureBuilder<List>(
         future: getData(),

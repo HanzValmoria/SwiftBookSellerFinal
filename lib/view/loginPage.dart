@@ -24,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-              colors: [Colors.lightGreen, Colors.black12],
+              colors: [Colors.blue[300], Colors.teal[50]],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter),
         ),
@@ -85,8 +85,8 @@ class _LoginPageState extends State<LoginPage> {
                 signIn(emailController.text, passwordController.text);
               },
         elevation: 0.0,
-        color: Colors.purple,
-        child: Text("Sign In", style: TextStyle(color: Colors.white70)),
+        color: Colors.white,
+        child: Text("Sign In", style: TextStyle(color: Colors.black)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.0)),
       ),
     );
@@ -103,9 +103,9 @@ class _LoginPageState extends State<LoginPage> {
           TextFormField(
             controller: emailController,
             cursorColor: Colors.white,
-            style: TextStyle(color: Colors.white70),
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
-              icon: Icon(Icons.email, color: Colors.white70),
+              icon: Icon(Icons.email, color: Colors.black54),
               hintText: "Email",
               border: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.white70)),
@@ -117,12 +117,12 @@ class _LoginPageState extends State<LoginPage> {
             controller: passwordController,
             cursorColor: Colors.white,
             obscureText: true,
-            style: TextStyle(color: Colors.black26),
+            style: TextStyle(color: Colors.black),
             decoration: InputDecoration(
-              icon: Icon(Icons.lock, color: Colors.black87),
+              icon: Icon(Icons.lock, color: Colors.black54),
               hintText: "Password",
               border: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white70)),
+                  borderSide: BorderSide(color: Colors.black)),
               hintStyle: TextStyle(color: Colors.white70),
             ),
           ),
@@ -137,7 +137,7 @@ class _LoginPageState extends State<LoginPage> {
       padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
       child: Text("Swift Book Seller",
           style: TextStyle(
-              color: Colors.black87,
+              color: Colors.black54,
               fontSize: 40.0,
               fontWeight: FontWeight.bold)),
     );

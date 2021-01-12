@@ -1,37 +1,59 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DataBaseHelper {
+  String serverUrl = "http://192.168.1.2:8000/api";
+  String serverUrlproducts = "http://192.168.1.2:8000/api/products";
+
   var status;
   var token;
-  String serverUrlproducts = "http://192.168.1.2:3000/products";
 
-  //funciton getData
-  Future<List> getData() async {
-    final prefs = await SharedPreferences.getInstance();
-    final key = 'token';
-    final value = prefs.get(key) ?? 0;
+//create function for login
+  loginData(String email, String password) async {
+    String myUrl = "$serverUrl/login";
+    final response = await http.post(myUrl,
+        headers: {'Accept': 'application/json'},
+        body: {"email": "$email", "password": "$password"});
+    status = response.body.contains('error');
 
-    String myUrl = "$serverUrlproducts";
-    http.Response response = await http.get(myUrl, headers: {
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $value'
-    });
-    return json.decode(response.body);
-    // print(response.body);
+    var data = json.decode(response.body);
+
+    if (status) {
+      print('data : ${data["error"]}');
+    } else {
+      print('data : ${data["token"]}');
+      _save(data["token"]);
+    }
   }
 
-  //function for register products
-  void addDataProducto(String _nameController, String _priceController,
+  //create function for register Users
+  registerUserData(String name, String email, String password) async {
+    String myUrl = "$serverUrl/register";
+    final response = await http.post(myUrl,
+        headers: {'Accept': 'application/json'},
+        body: {"name": "$name", "email": "$email", "password": "$password"});
+    status = response.body.contains('error');
+
+    var data = json.decode(response.body);
+
+    if (status) {
+      print('data : ${data["error"]}');
+    } else {
+      print('data : ${data["token"]}');
+      _save(data["token"]);
+    }
+  }
+
+//function for register products
+  void addDataProducts(String _nameController, String _priceController,
       String _stockController) async {
     final prefs = await SharedPreferences.getInstance();
     final key = 'token';
     final value = prefs.get(key) ?? 0;
 
     // String myUrl = "$serverUrl/api";
-    String myUrl = "http://192.168.1.2:3000/products";
+    String myUrl = "http://192.168.1.2:8000/api/products";
     final response = await http.post(myUrl, headers: {
       'Accept': 'application/json'
     }, body: {
@@ -52,14 +74,16 @@ class DataBaseHelper {
   }
 
   //function for update or put
-  void editarProduct(
-      String _id, String name, String price, String stock) async {
+  void editarData(String id, String name, String price, String stock) async {
     final prefs = await SharedPreferences.getInstance();
     final key = 'token';
     final value = prefs.get(key) ?? 0;
 
-    String myUrl = "http://192.168.1.2:3000/product/$_id";
-    http.put(myUrl, body: {
+    String myUrl = "http://192.168.1.2:8000/api/products/$id";
+    http.put(myUrl, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $value'
+    }, body: {
       "name": "$name",
       "price": "$price",
       "stock": "$stock"
@@ -70,16 +94,33 @@ class DataBaseHelper {
   }
 
   //function for delete
-  Future<void> removeRegister(String _id) async {
-    String myUrl = "http://192.168.1.2:3000/product/$_id";
+  void removeRegister(String id) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'token';
+    final value = prefs.get(key) ?? 0;
 
-    http.Response res = await http.delete("$myUrl");
+    String myUrl = "http://192.168.1.2:8000/api/products/$id";
+    http.delete(myUrl, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $value'
+    }).then((response) {
+      print('Response status : ${response.statusCode}');
+      print('Response body : ${response.body}');
+    });
+  }
 
-    if (res.statusCode == 200) {
-      print("DELETED");
-    } else {
-      throw "Can't delete post.";
-    }
+  //funciton getData
+  Future<List> getData() async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'token';
+    final value = prefs.get(key) ?? 0;
+
+    String myUrl = "$serverUrlproducts";
+    http.Response response = await http.get(myUrl, headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $value'
+    });
+    return json.decode(response.body);
   }
 
   //function save

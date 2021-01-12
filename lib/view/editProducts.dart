@@ -94,7 +94,7 @@ class _EditProductState extends State<EditProduct> {
                   child: new Text("Edit"),
                   color: Colors.blueAccent,
                   onPressed: () {
-                    dataBaseHelper.editarProduct(
+                    dataBaseHelper.editarData(
                         controllerId.text.trim(),
                         controllerName.text.trim(),
                         controllerPrice.text.trim(),

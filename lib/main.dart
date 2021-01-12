@@ -10,10 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Swift Book Seller",
       debugShowCheckedModeBanner: false,
       home: MainPage(),
-      theme: ThemeData(accentColor: Colors.green[200]),
     );
   }
 }
@@ -25,7 +23,6 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   SharedPreferences sharedPreferences;
-
   @override
   void initState() {
     super.initState();
@@ -44,8 +41,8 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blue[50],
       appBar: AppBar(
-        title: Text("Swift Book Seller", style: TextStyle(color: Colors.black)),
         actions: <Widget>[
           FlatButton(
             onPressed: () {
@@ -56,11 +53,11 @@ class _MainPageState extends State<MainPage> {
                       builder: (BuildContext context) => LoginPage()),
                   (Route<dynamic> route) => false);
             },
-            child: Text("Log Out", style: TextStyle(color: Colors.black)),
+            child: Text("Log Out", style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
-      body: Center(child: Text("Main Page")),
+      body: Center(child: Text("Welcome")),
       drawer: Drawer(
         child: new ListView(
           children: <Widget>[
@@ -69,14 +66,14 @@ class _MainPageState extends State<MainPage> {
               accountEmail: new Text('valmoria@gmail.com'),
             ),
             new ListTile(
-              title: new Text("List Products"),
+              title: new Text("Product List"),
               trailing: new Icon(Icons.help),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                 builder: (BuildContext context) => ListProducts(),
               )),
             ),
             new ListTile(
-              title: new Text("Add Products"),
+              title: new Text("Add Product"),
               trailing: new Icon(Icons.help),
               onTap: () => Navigator.of(context).push(new MaterialPageRoute(
                 builder: (BuildContext context) => AddDataProduct(),

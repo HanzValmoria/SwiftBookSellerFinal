@@ -19,17 +19,17 @@ class _DetailState extends State<Detail> {
   void confirm() {
     AlertDialog alertDialog = new AlertDialog(
       content: new Text(
-          "Do you want to delete'${widget.list[widget.index]['name']}'"),
+          "Are you sure you want to delete'${widget.list[widget.index]['name']}'"),
       actions: <Widget>[
         new RaisedButton(
           child: new Text(
-            "OK remove!",
+            "Confirm",
             style: new TextStyle(color: Colors.black),
           ),
           color: Colors.red,
           onPressed: () {
             dataBaseHelper
-                .removeRegister(widget.list[widget.index]['_id'].toString());
+                .removeRegister(widget.list[widget.index]['id'].toString());
             Navigator.of(context).push(new MaterialPageRoute(
               builder: (BuildContext context) => new ListProducts(),
             ));
@@ -50,7 +50,7 @@ class _DetailState extends State<Detail> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar:
-          new AppBar(title: new Text("${widget.list[widget.index]['name']}")),
+          new AppBar(title: new Text("${widget.list[widget.index]['nombre']}")),
       body: new Container(
         height: 270.0,
         padding: const EdgeInsets.all(20.0),

@@ -76,7 +76,7 @@ class _AddDataProductState extends State<AddDataProduct> {
                 height: 50,
                 child: new RaisedButton(
                   onPressed: () {
-                    databaseHelper.addDataProducto(
+                    databaseHelper.addDataProducts(
                         _nameController.text.trim(),
                         _priceController.text.trim(),
                         _stockController.text.trim());
